@@ -1,16 +1,20 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Ejercicio1{
 
     public static void main (String[] args) {
-    Scanner teclado = new Scanner(System.in);
+    File archivo = new File ("entrada.txt");
+    Scanner teclado = null;
     int a, b;
     
 
     // Modificarlo usando un try-chatch
     try {
-             System.out.println( "Escribe el numero: ");
+            teclado = new Scanner(archivo);
+            System.out.println( "Escribe el numero: ");
             a = teclado.nextInt();
 
             System.out.println( "Escribe el numero: ");
@@ -22,8 +26,13 @@ public class Ejercicio1{
             System.out.println("Error: No es posible dividir entre cero.");
         } catch (InputMismatchException e){
             System.out.println ("Entrada no valida");
-        }finally{
-            teclado.close(); 
+        }   catch (FileNotFoundException e){
+            System.out.println("Archivo no encontrado");
+        }
+        finally{
+            if (teclado != null){
+                teclado.close(); 
+            }
         }
     // Hacer el ejercicio tarea numero 2 de la imagen 11 mayo
     }
